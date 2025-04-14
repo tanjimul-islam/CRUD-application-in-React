@@ -1,7 +1,7 @@
 import Task from "./Task";
 import TaskAction from "./TaskAction";
 
-const TaskList = () => {
+const TaskList = ({ tasks }) => {
   return (
     <div className="rounded-xl border border-[rgba(206,206,206,0.12)] bg-[#1D212B] px-6 py-8 md:px-9 md:py-16">
       <TaskAction />
@@ -33,7 +33,9 @@ const TaskList = () => {
             </tr>
           </thead>
           <tbody>
-            <Task />
+            {tasks.map((task) => (
+              <Task key={task.id} task={task} />
+            ))}
           </tbody>
         </table>
       </div>
