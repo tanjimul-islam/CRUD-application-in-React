@@ -16,18 +16,45 @@ const TaskBoard = () => {
   };
   const [tasks, setTasks] = useState([defaultTask]);
   const [showModal, setShowModal] = useState(false);
-  const handleAddTask = (newTask) => {
-    setTasks([...tasks, newTask]);
+  const [taskToUpdate, setTaskToUpdate] = useState(null);
+  const handleAddTask = (newTask, isAdd) => {
+    if (isAdd) {
+      setTasks([...tasks, newTask]);
+    } else {
+      setTasks(
+        tasks.map((task) => {
+          if (task.id === newTask.id) {
+            return newTask;
+          }
+          return task;
+        })
+      );
+    }
     setShowModal(false);
+  };
+  const handleEditTask = (task) => {
+    console.log(task);
+    setTaskToUpdate(task);
+    setShowModal(true);
+  };
+  const handleCloseClick = () => {
+    setShowModal(false);
+    setTaskToUpdate(null);
   };
   return (
     <section className="mb-20" id="tasks">
-      {showModal && <AddTaskModal onSave={handleAddTask} />}
+      {showModal && (
+        <AddTaskModal
+          onSave={handleAddTask}
+          taskToUpdate={taskToUpdate}
+          onCloseClick={handleCloseClick}
+        />
+      )}
       <div className="container">
         <Search />
         <div className="rounded-xl border border-[rgba(206,206,206,0.12)] bg-[#1D212B] px-6 py-8 md:px-9 md:py-16">
           <TaskAction onAddTask={() => setShowModal(true)} />
-          <TaskList tasks={tasks} />
+          <TaskList tasks={tasks} onEdit={handleEditTask} />
         </div>
       </div>
     </section>

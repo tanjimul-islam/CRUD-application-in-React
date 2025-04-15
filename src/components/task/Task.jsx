@@ -1,6 +1,6 @@
 import { FaStar } from "react-icons/fa";
 
-const Task = ({ task }) => {
+const Task = ({ task, onEdit }) => {
   return (
     <tr className="border-b border-[#2E3443] [&>td]:align-baseline [&>td]:px-4 [&>td]:py-2">
       <td>
@@ -25,7 +25,12 @@ const Task = ({ task }) => {
       <td>
         <div className="flex items-center justify-center space-x-3">
           <button className="text-red-500">Delete</button>
-          <button className="text-blue-500">Edit</button>
+          <button
+            onClick={() => onEdit(task)}
+            className="text-blue-500 cursor-pointer"
+          >
+            Edit
+          </button>
         </div>
       </td>
     </tr>
