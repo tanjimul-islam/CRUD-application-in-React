@@ -1,4 +1,18 @@
-# React + Vite
+# CRUD Application in React
+Tasker is an intuitive task management system designed for everyone. It enables easy creation and management of tasks with features such as task creation (title, desc, tags, due date, priority, owner), task listing, powerful search with 'debounce' for an enhanced experience, task categorization (by tag, priority, owner), marking tasks as favorites, tracking and updating task status, task editing, and efficient task deletion. Could you simplify your task management with Tasker?
+
+Task Creation(title, desc, tags, due date, priority, owner)
+Listing the tasks
+Search: Ability to search by entering keywords that match one or more tasks. Implement the 'debounce' technique for improved search experience.
+Categorising the tasks(by tag, priority, owner)
+Marking a Task as a favorite
+Tracking and updating the task status
+Edit the tasks
+Delete one or more tasks
+
+
+
+## React + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
