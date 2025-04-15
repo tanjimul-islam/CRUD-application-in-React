@@ -1,4 +1,11 @@
-const Search = () => {
+import { useState } from "react";
+
+const Search = ({ onSearch }) => {
+  const [searchTerm, setSearchTerm] = useState("");
+  const handleSearch = (e) => {
+    e.preventDefault();
+    onSearch(searchTerm);
+  };
   return (
     <div className="p-2 flex justify-end">
       <form>
@@ -10,8 +17,11 @@ const Search = () => {
               className="z-20 block w-full bg-gray-800 px-4 py-2 pr-10 focus:outline-hidden"
               placeholder="Search Task"
               required
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
             />
             <button
+              onClick={handleSearch}
               type="submit"
               className="absolute right-2 top-0 h-full rounded-e-lg text-white md:right-4"
             >

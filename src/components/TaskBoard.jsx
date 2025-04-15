@@ -1,4 +1,5 @@
 import { useState } from "react";
+import NoTaskFound from "./NoTaskFound";
 import Search from "./Search";
 import AddTaskModal from "./task/AddTaskModal";
 import TaskAction from "./task/TaskAction";
@@ -55,6 +56,12 @@ const TaskBoard = () => {
     newTasks[taskIndex].isFavorite = !newTasks[taskIndex].isFavorite;
     setTasks(newTasks);
   };
+  const handleSearch = (searchTerm) => {
+    const filtered = tasks.filter((task) =>
+      task.title.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+    setTasks([...filtered]);
+  };
   return (
     <section className="mb-20" id="tasks">
       {showModal && (
@@ -65,18 +72,22 @@ const TaskBoard = () => {
         />
       )}
       <div className="container">
-        <Search />
+        <Search onSearch={handleSearch} />
         <div className="rounded-xl border border-[rgba(206,206,206,0.12)] bg-[#1D212B] px-6 py-8 md:px-9 md:py-16">
           <TaskAction
             onAddTask={() => setShowModal(true)}
             onDeleteAllClick={() => handleDeleteAllClick()}
           />
-          <TaskList
-            tasks={tasks}
-            onEdit={handleEditTask}
-            onDelete={handleDeleteTask}
-            onFav={handleFavorite}
-          />
+          {tasks.length > 0 ? (
+            <TaskList
+              tasks={tasks}
+              onEdit={handleEditTask}
+              onDelete={handleDeleteTask}
+              onFav={handleFavorite}
+            />
+          ) : (
+            <NoTaskFound />
+          )}
         </div>
       </div>
     </section>
