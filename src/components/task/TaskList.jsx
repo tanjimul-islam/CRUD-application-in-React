@@ -1,6 +1,6 @@
 import Task from "./Task";
 
-const TaskList = ({ tasks, onEdit, onDelete }) => {
+const TaskList = ({ tasks, onEdit, onDelete, onFav }) => {
   return (
     <div className="overflow-auto">
       <table className="table-fixed overflow-auto xl:w-full">
@@ -36,6 +36,7 @@ const TaskList = ({ tasks, onEdit, onDelete }) => {
               task={task}
               onEdit={onEdit}
               onDelete={onDelete}
+              onFav={onFav}
             />
           ))}
         </tbody>

@@ -1,10 +1,17 @@
 import { FaStar } from "react-icons/fa";
 
-const Task = ({ task, onEdit, onDelete }) => {
+const Task = ({ task, onEdit, onDelete, onFav }) => {
   return (
     <tr className="border-b border-[#2E3443] [&>td]:align-baseline [&>td]:px-4 [&>td]:py-2">
       <td>
-        {task.isFavorite ? <FaStar color="yellow" /> : <FaStar color="gray" />}
+        <button onClick={() => onFav(task.id)}>
+          {" "}
+          {task.isFavorite ? (
+            <FaStar color="yellow" />
+          ) : (
+            <FaStar color="gray" />
+          )}
+        </button>
       </td>
       <td>{task.title}</td>
       <td>
